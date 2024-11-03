@@ -5,4 +5,28 @@
 class ResourceManager
 {
     // Twoja implementacja tutaj
+    private:
+    std::unique_ptr<Resource> resource;  
+
+    public:
+   
+    ResourceManager() : resource(std::make_unique<Resource>()) {}
+
+    
+    ResourceManager(const ResourceManager& other) 
+        : resource(std::make_unique<Resource>(*other.resource)) {}
+
+    
+    ResourceManager& operator=(const ResourceManager& other) {
+        if (this != &other) {
+            resource = std::make_unique<Resource>(*other.resource);
+        }
+        return *this;
+    }
+
+    ~ResourceManager() = default;
+
+    double get() const {
+        return resource->get();
+    }
 };
