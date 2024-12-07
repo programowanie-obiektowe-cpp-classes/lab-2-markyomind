@@ -16,6 +16,8 @@ class ResourceManager
     ResourceManager(const ResourceManager& other) 
         : resource(std::make_unique<Resource>(*other.resource)) {}
 
+    ResourceManager(ResourceManager&& other) noexcept = default;
+
     
     ResourceManager& operator=(const ResourceManager& other) {
         if (this != &other) {
@@ -23,6 +25,8 @@ class ResourceManager
         }
         return *this;
     }
+
+     ResourceManager& operator=(ResourceManager&& other) noexcept = default;
 
     ~ResourceManager() = default;
 
